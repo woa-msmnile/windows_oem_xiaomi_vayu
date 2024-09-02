@@ -3,8 +3,8 @@ Signature   = "$WINDOWS NT$"
 Class       = System
 ClassGuid   = {4d36e97d-e325-11ce-bfc1-08002be10318}
 Provider    = %ManufacturerName%
-CatalogFile = tas2562_win.cat
-DriverVer = 09/02/2024,9.29.41.902
+CatalogFile = AudFilter.cat
+DriverVer = 09/02/2024,9.29.41.820
 PnpLockdown = 1
 
 [DestinationDirs]
@@ -14,7 +14,7 @@ DefaultDestDir = 13
 1 = %DiskName%,,,""
 
 [SourceDisksFiles]
-tas2562_win.sys  = 1,,
+AudFilter.sys  = 1,,
 
 ;*****************************************
 ; Install Section
@@ -24,35 +24,35 @@ tas2562_win.sys  = 1,,
 %ManufacturerName% = Standard,NTARM64.10.0...16299 ; %13% support introduced in build 16299
 
 [Standard.NTARM64.10.0...16299]
-%tas2562_win.DeviceDesc% = tas2562_win_Device, ACPI\TAS256X
+%AudFilter.DeviceDesc% = AudFilter_Device, ACPI\AFLTJ20S
 
-[tas2562_win_Device.NT]
+[AudFilter_Device.NT]
 CopyFiles = File_Copy
 
 [File_Copy]
-tas2562_win.sys
+AudFilter.sys
 
 ;-------------- Service installation
-[tas2562_win_Device.NT.Services]
-AddService = tas2562_win,%SPSVCINST_ASSOCSERVICE%, tas2562_win_Service_Inst
+[AudFilter_Device.NT.Services]
+AddService = AudFilter,%SPSVCINST_ASSOCSERVICE%, AudFilter_Service_Inst
 
-; -------------- tas2562_win driver install sections
-[tas2562_win_Service_Inst]
-DisplayName    = %tas2562_win.SVCDESC%
+; -------------- AudFilter driver install sections
+[AudFilter_Service_Inst]
+DisplayName    = %AudFilter.SVCDESC%
 ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
 StartType      = 3               ; SERVICE_DEMAND_START
 ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
-ServiceBinary  = %13%\tas2562_win.sys
+ServiceBinary  = %13%\AudFilter.sys
 
-[tas2562_win_Device.NT.Wdf]
-KmdfService = tas2562_win, tas2562_win_wdfsect
+[AudFilter_Device.NT.Wdf]
+KmdfService = AudFilter, AudFilter_wdfsect
 
-[tas2562_win_wdfsect]
+[AudFilter_wdfsect]
 KmdfLibraryVersion = 1.15
 
 [Strings]
 SPSVCINST_ASSOCSERVICE = 0x00000002
 ManufacturerName = "WoA-Miaoll"
-DiskName = "Ti TAS2562 Installation Disk"
-tas2562_win.DeviceDesc = "Ti TAS2562 Device"
-tas2562_win.SVCDESC = "Ti TAS2562 Service"
+DiskName = "AudFilter Installation Disk"
+AudFilter.DeviceDesc = "AudFilter Device"
+AudFilter.SVCDESC = "AudFilter Service"
