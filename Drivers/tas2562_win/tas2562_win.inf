@@ -4,7 +4,7 @@ Class       = System
 ClassGuid   = {4d36e97d-e325-11ce-bfc1-08002be10318}
 Provider    = %ManufacturerName%
 CatalogFile = tas2562_win.cat
-DriverVer = 09/02/2024,9.29.41.902
+DriverVer = 09/02/2024,1.48.51.341
 PnpLockdown = 1
 
 [DestinationDirs]
